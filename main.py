@@ -133,10 +133,18 @@ def clean_and_read(img, contours):
 
 
 if __name__ == '__main__':
-	print("DETECTING PLATE . . .")
+	print("DETECTING From Webcam and giving the numberplate . . .")
+
+	cap = cv2.VideoCapture(0)
+	while True:
+		ret, frame = cap.read()
+		cv2.imshow('Web cam', frame)
+		if cv2.waitKey(1) & 0xFF == ord('q'):
+			image = frame
+			break
 
 	# img = cv2.imread("testData/Final.JPG")
-	img = cv2.imread("testData/test.jpeg")
+	img = image
 
 	threshold_img = pre_process(img)
 	contours = extract_contours(threshold_img)
